@@ -12,6 +12,9 @@ def loadinventory():
     with open(flockdefs.inventory) as json_data:
         owlhs = json.load(json_data)
         print len(owlhs)
+    return owlhs
+
+def printinventory(owlhs):
     for owlh in owlhs: 
         print owlh["name"]
 

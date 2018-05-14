@@ -17,7 +17,8 @@ flocklogger.initflocklogger()
 def main():
     if not flockmanager.amirunning():
         while not flockmanager.killme():
-            flockinventory.loadinventory()
+            flockmembers = flockinventory.loadinventory()
+            flockinventory.printinventory(flockmembers)
             time.sleep (30) # Just for testing, deleting in a while
         flockmanager.byebye()
 
