@@ -10,6 +10,8 @@ import flocklogger
 import flockmanager
 
 flogger = flocklogger.flocklogger
+flocklogger.initflocklogger()
+
 
 def main():
     if not flockmanager.amirunning():
