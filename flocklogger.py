@@ -4,6 +4,8 @@
 
 import os
 import flockdefs
+from datetime import datetime
+
 
 logfile = ""
 
@@ -16,7 +18,7 @@ def killflocklogger():
     global logfile
     logfile.close()
 
-def flocklogger(text):
+def flocklogger(text, proc="flock", id=os.getpid()):
     print ">>> " + text
     global logfile
-    logfile.write(">>> " + text + "\n")
+    logfile.write(datetime.utcnow().strftime('%a %d %b %Y %H:%M:%S.%f') + " [" + proc + "] (" + str(id) +"): " + text + "\n")
