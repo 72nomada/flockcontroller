@@ -27,3 +27,13 @@ def amirunning():
 def byebye():
     flogger ("Time to go home. See you soon")
     os.unlink(flockdefs.pidfile)
+
+# Just as a remainder. If pid file is in place, try to show if the process is running for sure.
+def check_pid(pid):        
+    """ Check For the existence of a unix pid. """
+    try:
+        os.kill(pid, 0)
+    except OSError:
+        return False
+    else:
+        return True
