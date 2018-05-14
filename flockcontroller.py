@@ -8,6 +8,7 @@ import time
 # own libs
 import flocklogger 
 import flockmanager
+import flockinventory
 
 flogger = flocklogger.flocklogger
 flocklogger.initflocklogger()
@@ -16,8 +17,7 @@ flocklogger.initflocklogger()
 def main():
     if not flockmanager.amirunning():
         while not flockmanager.killme():
-            flogger("hellowl") # remove from here. it make not sense here
-            print "hellowl!" # remove from here. it make not sense here
+            flockinventory.loadinventory()
             time.sleep (30) # Just for testing, deleting in a while
         flockmanager.byebye()
 

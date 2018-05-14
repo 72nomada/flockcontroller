@@ -4,3 +4,5 @@
 pidfile = "/tmp/flock.pid"
 logfile = "/var/log/owlh/flock.log"
 logfile = "/tmp/flock.log"
+
+inventory = "inventory.json"
