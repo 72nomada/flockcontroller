@@ -4,6 +4,8 @@
 # v0.0 14.05.18 master@owlh.net
 
 import time
+import os
+import sys
 
 # own libs
 import flocklogger 
@@ -22,7 +24,7 @@ def main():
             flockinventory.printinventory(flockmembers)
             fconf = flockconf.loadconf()
             flockconf.printconf(fconf) 
-            time.sleep (30) # Just for testing, deleting in a while
+            time.sleep (10) # Just for testing, deleting in a while
         flockmanager.byebye()
 
 main()
