@@ -1,0 +1,5 @@
+{
+    "pidfile" : "/tmp/flock.pid",
+    "logfile" : "/tmp/flock.log",
+    "inventory" : "inventory.json"
+}
