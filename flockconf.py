@@ -12,9 +12,9 @@ flogger = flocklogger.flocklogger
 def loadconf():
     with open(configfile) as conf_data:
         conf = json.load(conf_data)
-        print len(conf)
+        print len(conf) # Token, delete as needed
     return conf
 
 def printconf(conf):
     for item in conf: 
-        print item
+        print item + " -> " + conf[item]
