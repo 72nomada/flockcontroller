@@ -13,6 +13,7 @@ import flockmanager
 import flockinventory
 import flockconf
 
+
 flogger = flocklogger.flocklogger
 flocklogger.initflocklogger()
 
@@ -20,10 +21,7 @@ flocklogger.initflocklogger()
 def main():
     if not flockmanager.amirunning():
         while not flockmanager.killme():
-            flockmembers = flockinventory.loadinventory()
-            flockinventory.printinventory(flockmembers)
-            fconf = flockconf.loadconf()
-            flockconf.printconf(fconf) 
+            flockinventory.run()
             time.sleep (10) # Just for testing, deleting in a while
         flockmanager.byebye()
 

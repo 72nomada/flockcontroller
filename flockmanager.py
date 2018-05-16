@@ -26,6 +26,7 @@ def amirunning():
 
 def byebye():
     flogger ("Time to go home. See you soon")
+    flocklogger.killflocklogger()
     os.unlink(flockdefs.pidfile)
 
 # Just as a remainder. If pid file is in place, try to show if the process is running for sure.

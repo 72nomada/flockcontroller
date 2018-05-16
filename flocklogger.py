@@ -14,6 +14,7 @@ def initflocklogger():
     logfile = file(flockdefs.logfile,'a',bufsize)
 
 def killflocklogger():
+    flocklogger ("Closing log output")
     global logfile
     logfile.close()
 
