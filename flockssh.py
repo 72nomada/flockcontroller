@@ -9,10 +9,8 @@ flogger = flocklogger.flocklogger
 def run_cmd(cmd, ssh):
     try:
         stdin, stdout, stderr = ssh.exec_command(cmd)
-
         for l in stdout :
             print("stdout : %s" % l.strip())
-
         for l in stderr:
             print("stderr : %s" % l.strip())
     except Exception as inst:
@@ -31,19 +29,24 @@ def owl_connect(owl):
     except Exception as inst:
         flogger("Oops!  there was a problem: %s" % str(inst),"WARNING")
         return False, ""
-    
     return True, ssh
+
+def get_status_sniffer(owl,ssh):
+    flogger("check if sniffer is working in owl %s (%s)" % (owl["name"], owl["ip"]))
+    cmd='top -b -n1 | grep tcpdump | awk \'{print $9}\''
+    run_cmd(cmd, ssh)
 
 def check_owl_alive(owl):
     flogger("check if owl %s (%s) is alive" % (owl["name"], owl["ip"]))
     alive, ssh = owl_connect(owl)
     if alive:
-        cmd='pwd; ls; date'
-        print('\n test 1\n cmd %s\n' % cmd)
-        run_cmd(cmd, ssh)
-        return True
+        flogger("owl %s (%s) is alive" % (owl["name"], owl["ip"]))
+#        cmd='pwd; ls; date'
+#        print('\n test 1\n cmd %s\n' % cmd)
+#        run_cmd(cmd, ssh)
+        return True, ssh
     flogger("owl %s (%s) is not alive" % (owl["name"], owl["ip"]))
-    return False
+    return False, ""
 
 def nothing():
     scp_opt=""

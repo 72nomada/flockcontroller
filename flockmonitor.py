@@ -8,7 +8,8 @@ flogger = flocklogger.flocklogger
 
 def check_owl_alive (owl):
     flogger ("check owl %s is alive" % owl["name"])
-    flockssh.check_owl_alive(owl)
+    alive, ssh = flockssh.check_owl_alive(owl)
+    return alive, ssh
 
 def get_status_cpu (owl):
     flogger ("check owl %s CPU" % owl["name"])
@@ -19,8 +20,9 @@ def get_status_mem (owl):
 def get_status_storage (owl):
     flogger ("check owl %s storage" % owl["name"])
 
-def get_status_sniffer (owl):
+def get_status_sniffer (owl, ssh):
     flogger ("check owl %s sniffer status" % owl["name"])
+    flockssh.get_status_sniffer(owl, ssh)
 
 def run_sniffer (owl):
     flogger ("run sniffer on owl %s" % owl["name"])
