@@ -20,11 +20,10 @@ def run_cmd(cmd, ssh):
         flogger("Oops!  there was a problem: %s" % str(inst))
         return False
 
-def check_owl_alive(owl):
+def owl_connect(owl):
     owl_user="jose"
     owl_key="/Users/jizquierdo/.ssh/owl"
     owl_ip=owl["ip"]
-    flogger("check if owl %s (%s) is alive" % (owl["name"], owl["ip"]))
 
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy( paramiko.AutoAddPolicy() )
@@ -33,32 +32,22 @@ def check_owl_alive(owl):
     except Exception as inst:
         print "Oops!  there was a problem: ", inst
         flogger("Oops!  there was a problem: %s" % str(inst))
-        return False
-    cmd='pwd; ls; date'
-    print('\n test 1\n cmd %s\n' % cmd)
-    run_cmd(cmd, ssh)
-    ssh.close()
+        return False, ""
+    
+    return True, ssh
+
+def check_owl_alive(owl):
+    flogger("check if owl %s (%s) is alive" % (owl["name"], owl["ip"]))
+    alive, ssh = owl_connect(owl)
+    if alive:
+        cmd='pwd; ls; date'
+        print('\n test 1\n cmd %s\n' % cmd)
+        run_cmd(cmd, ssh)
+        return True
+    flogger("owl %s (%s) is not alive" % (owl["name"], owl["ip"]))
+    return False
 
 def nothing():
-    bastion_ip='ip'     # you have to edit and provide valid IP address 
-    bastion_pass='pass' # you have to edit it and provide valid password 
-
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy( paramiko.AutoAddPolicy() )
-    ssh.connect(bastion_ip, username='root', password=bastion_pass)
-
-    chan = ssh.invoke_shell()
-
-    # other cloud server 
-    priv_ip='private_ip'  # you have to edit it and provide valid private IP 10.176.0.0/12
-    passw='pass'          # valid password 
-
-    test_script='/root/check_rackconnect.sh'
-
-    cmd='pwd; ls; date'
-    print('\n test 1\n cmd %s\n' % cmd)
-    run_cmd(cmd)
-
     scp_opt=""
     cmd='scp -q ' + scp_opt + ' -o NumberOfPasswordPrompts=1 -o StrictHostKeyChecking=no %s root@%s:~/; echo $? done.' % ( test_script, priv_ip )
     print('\n test 2\n cmd %s\n' % cmd)
