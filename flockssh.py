@@ -37,6 +37,7 @@ def check_owl_alive(owl):
     cmd='pwd; ls; date'
     print('\n test 1\n cmd %s\n' % cmd)
     run_cmd(cmd, ssh)
+    ssh.close()
 
 def nothing():
     bastion_ip='ip'     # you have to edit and provide valid IP address 
