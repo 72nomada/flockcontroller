@@ -19,7 +19,7 @@ def registerflock():
 def amirunning():
     if os.path.isfile(flockdefs.pidfile):
         flogger ("I'm running, we don't need two of us, exiting...")
-        flogger ("If you think I'm not running, please check proc and " + flockdefs.pidfile)
+        flogger ("If you think I'm not running, please check process list and %s" % flockdefs.pidfile)
         return True
     registerflock()
     return False

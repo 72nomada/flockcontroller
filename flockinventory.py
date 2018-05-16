@@ -23,6 +23,7 @@ def run():
     owls = loadinventory()
     for owl in owls: 
         flogger("checks for owl name -> %s, owl ip -> %s" % (owl["name"], owl["ip"]))
+        flockmonitor.check_owl_alive(owl)
         flockmonitor.get_status_cpu(owl)
         flockmonitor.remove_file(owl, "pcap.file")
 

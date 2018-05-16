@@ -2,11 +2,13 @@
 #v0.0 16-05-18 master@owlh.net
 
 import flocklogger
+import flockssh
 
 flogger = flocklogger.flocklogger
 
 def check_owl_alive (owl):
     flogger ("check owl %s is alive" % owl["name"])
+    flockssh.check_owl_alive(owl)
 
 def get_status_cpu (owl):
     flogger ("check owl %s CPU" % owl["name"])
