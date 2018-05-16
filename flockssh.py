@@ -22,15 +22,14 @@ def run_cmd(cmd, ssh):
 
 def check_owl_alive(owl):
     owl_user="jose"
-    owl_pass="polilla"
+    owl_key="/Users/jizquierdo/.ssh/owl"
     owl_ip=owl["ip"]
     flogger("check if owl %s (%s) is alive" % (owl["name"], owl["ip"]))
 
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy( paramiko.AutoAddPolicy() )
     try:
-        ssh.connect(owl_ip, username=owl_user, key_filename='/Users/jizquierdo/.ssh/owl')
-        #ssh.connect(owl_ip, username=owl_user, password=owl_pass)
+        ssh.connect(owl_ip, username=owl_user, key_filename=owl_key)
     except Exception as inst:
         print "Oops!  there was a problem: ", inst
         flogger("Oops!  there was a problem: %s" % str(inst))
