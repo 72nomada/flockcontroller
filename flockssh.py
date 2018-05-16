@@ -16,8 +16,7 @@ def run_cmd(cmd, ssh):
         for l in stderr:
             print("stderr : %s" % l.strip())
     except Exception as inst:
-        print "Oops!  there was a problem: ", inst
-        flogger("Oops!  there was a problem: %s" % str(inst))
+        flogger("Oops!  there was a problem: %s" % str(inst),"WARNING")
         return False
 
 def owl_connect(owl):
@@ -30,8 +29,7 @@ def owl_connect(owl):
     try:
         ssh.connect(owl_ip, username=owl_user, key_filename=owl_key)
     except Exception as inst:
-        print "Oops!  there was a problem: ", inst
-        flogger("Oops!  there was a problem: %s" % str(inst))
+        flogger("Oops!  there was a problem: %s" % str(inst),"WARNING")
         return False, ""
     
     return True, ssh
