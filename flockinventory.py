@@ -12,7 +12,6 @@ flogger = flocklogger.flocklogger
 def loadinventory():
     with open(flockdefs.inventory) as json_data:
         owlhs = json.load(json_data)
-        print len(owlhs)
     return owlhs
 
 def printinventory(owlhs):
@@ -25,9 +24,13 @@ def run():
         flogger("checks for owl name -> %s, owl ip -> %s" % (owl["name"], owl["ip"]))
         alive, ssh = flockmonitor.check_owl_alive(owl)
         if alive:
-            flockmonitor.get_status_sniffer(owl, ssh)
-            flockmonitor.get_status_cpu(owl)
-            flockmonitor.remove_file(owl, "pcap.file")
-            ssh.close()
+            running, status_ok = get_status_sniffer(owl,ssh)
+            if running:
+                if not status_ok:
+                    flockmonitor.stop_sniffer(owl,ssh)
+            elif status_ok:
+                flockmonitor.run_sniffer(owl,ssh)
+            flockmonitor.get_file_list(owl, ssh)
+        ssh.close()
 
 

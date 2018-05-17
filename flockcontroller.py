@@ -13,10 +13,7 @@ import flockmanager
 import flockinventory
 import flockconf
 
-
 flogger = flocklogger.flocklogger
-flocklogger.initflocklogger()
-
 
 def main():
     if not flockmanager.amirunning():

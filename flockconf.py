@@ -7,14 +7,20 @@ import json
 import flocklogger 
 
 flogger = flocklogger.flocklogger
-
+conf = ""
 
 def loadconf():
     with open(configfile) as conf_data:
+        global conf 
         conf = json.load(conf_data)
-        print len(conf) # Token, delete as needed
-    return conf
 
-def printconf(conf):
+def get_item(item):
+    global conf
+    return conf[item]
+
+def printconf():
+    global conf
     for item in conf: 
         print item + " -> " + conf[item]
+
+loadconf()
