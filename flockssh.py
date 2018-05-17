@@ -118,6 +118,7 @@ def get_file_list (owl, ssh, folder):
     status, output = run_cmd(cmd,ssh)
     files = output.split(",")
     return files
+    
 
 def transport_file (owl, sftp, file_remote, file_local):
     if re.search("\.pcap",file_remote):

@@ -1,6 +1,8 @@
 #flock monitor
 #v0.0 16-05-18 master@owlh.net
 
+import re
+
 import flocklogger
 import flockssh
 import flockconf
@@ -14,6 +16,8 @@ def check_owl_alive (owl):
     return alive, ssh
 
 def get_status_cpu (owl, cpu):
+    if not re.search("\d+",cpu):
+        return True
     flogger ("check owl %s CPU" % owl["name"])
     max_cpu = conf("max_cpu")
 #    if float(cpu) > float(conf["max_cpu"]): 
@@ -23,6 +27,8 @@ def get_status_cpu (owl, cpu):
     return True
 
 def get_status_mem (owl,mem):
+    if not re.search("\d+",mem):
+        return True
     flogger ("check owl %s MEM" % owl["name"])
     max_mem = conf("max_mem")
 #    if float(cpu) > float(conf["max_mem"]): 
@@ -34,15 +40,13 @@ def get_status_mem (owl,mem):
 
 def get_status_sniffer (owl, ssh):
     flogger ("check owl %s sniffer status" % owl["name"])
-    alive, pid, cpu, mem = flockssh.get_status_sniffer(owl, ssh)
-    running = False
-    if alive:
-        running = True
-        cpustatus = get_status_cpu (owl,cpu)
-        memstatus = get_status_mem (owl,mem)
-        storagestatus = get_status_storage(owl,ssh)
-        if cpustatus && memsatus && storagestatus:
-            return running, True
+    running, pid, cpu, mem = flockssh.get_status_sniffer(owl, ssh)
+    cpustatus = get_status_cpu (owl,cpu)
+    memstatus = get_status_mem (owl,mem)
+    storagestatus = get_status_storage(owl,ssh)
+    flogger ("check owl %s ==>> CPU: %s, MEM: %s, STO: %s sniffer status" % (owl["name"],cpustatus,memstatus,storagestatus))
+    if cpustatus and memstatus and storagestatus:
+        return running, True
     return running, False
 
 def get_status_storage (owl,ssh):
@@ -70,8 +74,9 @@ def get_file_list (owl,ssh):
     file_list = flockssh.get_file_list(owl,ssh, conf("pcap_path"))
     sftp = ssh.open_sftp()
     for file in file_list:
-        transport_file(owl, sftp, conf("pcap_path")+file, conf("local_pcap_path")+file)
-        remove_file(owl, sftp, conf("pcap_path")+file)
+        if re.search("\.pcap",file):
+            transport_file(owl, sftp, conf("pcap_path")+file, conf("local_pcap_path")+file)
+            remove_file(owl, sftp, conf("pcap_path")+file)
 
 def transport_file (owl, sftp, file, local_path):
     flogger ("get file %s from owl %s" % (file, owl["name"]))

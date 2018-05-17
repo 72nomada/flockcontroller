@@ -24,7 +24,9 @@ def run():
         flogger("checks for owl name -> %s, owl ip -> %s" % (owl["name"], owl["ip"]))
         alive, ssh = flockmonitor.check_owl_alive(owl)
         if alive:
-            running, status_ok = get_status_sniffer(owl,ssh)
+            flogger(">>> as Owl name-> %s, is ALIVE, will check status" % (owl["name"]))
+            running, status_ok = flockmonitor.get_status_sniffer(owl,ssh)
+            flogger (">>> Running: %s, Status: %s " % (running, status_ok))
             if running:
                 if not status_ok:
                     flockmonitor.stop_sniffer(owl,ssh)
