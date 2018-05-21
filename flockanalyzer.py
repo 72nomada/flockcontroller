@@ -4,6 +4,7 @@
 #    "owlh_interface" : "owlh",
 #    "suricata_on" : "True",
 #    "bro_on" : "True"
+#   ·"safe_pcap_locally" : "True"
 
 # lsof must be in place or Python-Lsof is possible? 
 # psutil must be in place. pip install psutil >>> Seems to not be useful as we think
@@ -12,6 +13,8 @@
 def disposal_pcap (pcap):
     #if send remote
         # send remote
+    #if any failure or save_pcap_locally
+        #mv pcap to pcap_out_queue(pcap)
     #if delete local
         # remove local
 
@@ -21,8 +24,12 @@ def pcap_ready (pcap):
     # not open pcap >> ### lsof /home/jose/openrules.pcap
     return ready
 
+def put_in_progress (pcap):
+    #mv pcap from pcap_in_queue to pcap_in_progress
+
 def manage_pcap (pcap):
-    #if 
+    #if pcap_ready(pcap)
+        #put_in_progress(pcap)
         #run tcpreplay over owlh interface
         #disposal pcap
         #exit 
