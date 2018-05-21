@@ -35,9 +35,15 @@ def manage_pcap (pcap):
         #exit 
     # log that file is still open
 
+def read_pcaps():
+    pcaps = []
+    #read pcaps from folder - just the name.
+    return pcaps
 
 def main ():
     #read conf
     #verify suricata is "ON" or bro is "ON" (as per configuration)
-    #for pcap in pcaps:
-        #fork? As this is traffic, should be find to have traffic from different pcaps mixed. 
+    #while True:
+        #pcaps = read_pcaps()
+        #for pcap in pcaps:
+            #fork? As this is traffic, should be find to have traffic from different pcaps mixed. 
