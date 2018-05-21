@@ -11,9 +11,13 @@
 # 
 
 def disposal_pcap (pcap):
+    #safe_on_failure = False
     #if send remote
         # send remote
-    #if any failure or save_pcap_locally
+    #if any failure
+        #safe_on_failure = True
+        #log that there were some issue
+    #if save_pcap_locally of safe_on_failure
         #mv pcap to pcap_out_queue(pcap)
     #if delete local
         # remove local
