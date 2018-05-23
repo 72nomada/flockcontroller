@@ -125,8 +125,10 @@ def get_file_list (owl, ssh, folder):
     return files
 
 def owner_owlh (owl, ssh, file_remote, user): 
-    cmd = "sudo chown %s %s" % (user, file_remote)
-    status, output = run_cmd(cmd,ssh)
+    if re.search("\.pcap",file_remote):
+        flogger("setting %s as owner of %s from %s" % (user, file_remote, owl["name"]))
+        cmd = "sudo chown %s %s" % (user, file_remote)
+        status, output = run_cmd(cmd,ssh)
 
 def transport_file (owl, sftp, file_remote, file_local):
     if re.search("\.pcap",file_remote):
