@@ -35,6 +35,6 @@ def run():
             elif status_ok:
                 flockmonitor.run_sniffer(owl,ssh)
             flockmonitor.get_file_list(owl, ssh)
-        ssh.close()
+            ssh.close()
 
 

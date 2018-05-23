@@ -53,3 +53,22 @@ sudo curl -o /opt/owlh/flockmanager.py https://raw.githubusercontent.com/owlh/fl
 sudo curl -o /opt/owlh/flockmonitor.py https://raw.githubusercontent.com/owlh/flockcontroller/master/flockmonitor.py 
 sudo curl -o /opt/owlh/flockssh.py https://raw.githubusercontent.com/owlh/flockcontroller/master/flockssh.py 
 sudo curl -o /opt/owlh/flockconf.py https://raw.githubusercontent.com/owlh/flockcontroller/master/flockconf.py
+
+if ! sudo yum list installed epel-release ; then
+    sudo yum --enablerepo=extras install epel-release
+fi
+
+if ! sudo yum list installed tcpreplay ; then
+    sudo yum -y install tcpreplay
+fi
+
+if ! sudo yum list installed pyhton-pip ; then
+    sudo yum -y install python-pip
+fi
+
+if ! sudo pip show paramiko; then
+    pip install paramiko
+fi
+
+
+
