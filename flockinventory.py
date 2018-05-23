@@ -1,16 +1,18 @@
 # flock inventory
 # v0.0 14-05-18 master@owlh.net
 
-import flockdefs
+#import flockdefs
 import json
 import flocklogger 
 import flockmonitor
+import flockconf
 
 flogger = flocklogger.flocklogger
+conf = flockconf.get_item
 
 
 def loadinventory():
-    with open(flockdefs.inventory) as json_data:
+    with open(conf("inventory")) as json_data:
         owlhs = json.load(json_data)
     return owlhs
 

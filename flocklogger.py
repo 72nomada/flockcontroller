@@ -3,14 +3,15 @@
 # v0.0 14.05.18 master@owlh.net
 
 import os
-import flockdefs
+#import flockdefs
 from datetime import datetime
-
+import flockconf
+conf = flockconf.get_item
 
 def initflocklogger():
     global logfile 
     bufsize = 0 # 0 -> force flush on each write
-    logfile = file(flockdefs.logfile,'a',bufsize)
+    logfile = file(conf("logfile"),'a',bufsize)
 
 def killflocklogger():
     flocklogger ("Closing log output")

@@ -11,6 +11,7 @@ import flocklogger
 
 flogger = flocklogger.flocklogger
 
+
 def run_cmd(cmd, ssh):
     try:
         stdin, stdout, stderr = ssh.exec_command(cmd)

@@ -6,11 +6,10 @@
 #    "bro_on" : "True"
 #   ·"safe_pcap_locally" : "True"
 
-# lsof must be in place or Python-Lsof is possible? 
-# psutil must be in place. pip install psutil >>> Seems to not be useful as we think
-# 
+# lsof must be installed in owlh master
+#
 
-def disposal_pcap (pcap):
+def disposal_pcap
     #safe_on_failure = False
     #if send remote
         # send remote

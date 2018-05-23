@@ -11,7 +11,7 @@ import sys
 import flocklogger 
 import flockmanager
 import flockinventory
-import flockconf
+# import flockconf
 
 flogger = flocklogger.flocklogger
 
