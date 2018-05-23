@@ -102,7 +102,7 @@ def get_status_storage(owl,ssh,folder):
 
 def run_sniffer (owl,ssh,interface,capture,pcap_path,filter_path,user):
     flogger("starting traffic collector on %s (%s)" % (owl["name"], owl["ip"]))
-    cmd = 'nohup sudo tcpdump -i %s -G %s -w %s`hostname`-%%y%%m%%d%%H%%M%%S.pcap -F %s >/dev/null 2>&1 &' % (interface,capture, pcap_path, filter_path)
+    cmd = 'nohup sudo tcpdump -i %s -G %s -w %s`hostname`-%%y%%m%%d%%H%%M%%S.pcap -F %s -z %s >/dev/null 2>&1 &' % (interface, capture, pcap_path, filter_path, user)
     output = ""
     run_cmd_bg(cmd, ssh)
 
@@ -127,10 +127,12 @@ def get_file_list (owl, ssh, folder):
 
 def transport_file (owl, sftp, file_remote, file_local):
     if re.search("\.pcap",file_remote):
+        flogger("collecting: %s to %s" % (file_remote, file_local))
         sftp.get(file_remote, file_local)
 
 def remove_file (owl, sftp, file_remote):
     if re.search("\.pcap",file_remote):
+        flogger("cleaning: %s to %s" % (file_remote))
         sftp.remove(file_remote)
 
 def nothing():
