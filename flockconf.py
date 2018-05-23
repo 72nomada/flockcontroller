@@ -4,9 +4,7 @@
 configfile = "/etc/owlh/owlh.conf" # this must be in other place.
 
 import json
-import flocklogger 
 
-flogger = flocklogger.flocklogger
 conf = ""
 
 def loadconf():
