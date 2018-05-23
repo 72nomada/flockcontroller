@@ -126,6 +126,7 @@ def get_file_list (owl, ssh, folder):
 
 def owner_owlh (owl, ssh, file_remote, user): 
     cmd = "sudo chown %s %s" % (user, file_remote)
+    status, output = run_cmd(cmd,ssh)
 
 def transport_file (owl, sftp, file_remote, file_local):
     if re.search("\.pcap",file_remote):
@@ -134,7 +135,7 @@ def transport_file (owl, sftp, file_remote, file_local):
 
 def remove_file (owl, sftp, file_remote):
     if re.search("\.pcap",file_remote):
-        flogger("cleaning: %s to %s" % (file_remote))
+        flogger("cleaning: %s from %s" % (file_remote, owl["name"]))
         sftp.remove(file_remote)
 
 def nothing():
