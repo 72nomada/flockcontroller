@@ -63,7 +63,7 @@ def get_status_storage (owl,ssh):
 
 def run_sniffer (owl,ssh):
     flogger ("run sniffer on owl %s" % owl["name"])
-    flockssh.run_sniffer(owl, ssh, conf("default_interface"),conf("capture_time"),conf("pcap_path"),conf("filter_path"), conf("owl_user"))
+    flockssh.run_sniffer(owl, ssh, conf("default_interface"),conf("capture_time"),conf("pcap_path"),conf("filter_path"), conf("owlh_user"))
 
 def stop_sniffer (owl, ssh):
     flogger ("STOP sniffer on owl %s" % owl["name"])
