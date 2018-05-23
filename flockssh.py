@@ -8,7 +8,9 @@ from subprocess import call
 
 
 import flocklogger
+import flockconf
 
+conf = flockconf.get_item
 flogger = flocklogger.flocklogger
 
 
@@ -45,8 +47,8 @@ def run_cmd_bg(cmd, ssh):
 
 
 def owl_connect(owl):
-    owl_user="jose"
-    owl_key="/Users/jizquierdo/.ssh/owl"
+    owl_user=conf("owlh_user")
+    owl_key=conf("owlh_user_key")
     owl_ip=owl["ip"]
 
     ssh = paramiko.SSHClient()
