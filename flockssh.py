@@ -30,7 +30,9 @@ def run_cmd(cmd, ssh):
 def run_cmd_bg(cmd, ssh):
     try:
         channel = ssh.get_transport().open_session()
+        flogger("will run command: %s" % cmd,"INFO")
         stdin, stdout, stderr = channel.exec_command(cmd)
+        flogger("will run command DONE: %s" % cmd,"INFO")
         output = ""
         for l in stdout:
             output = l.strip()
