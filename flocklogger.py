@@ -11,7 +11,10 @@ conf = flockconf.get_item
 def initflocklogger():
     global logfile 
     bufsize = 0 # 0 -> force flush on each write
-    logfile = file(conf("logfile"),'a',bufsize)
+    try: 
+        logfile = file(conf("logfile"),'a',bufsize)
+    except Exception as inst:
+        print "Error - %s" % str(inst)
 
 def killflocklogger():
     flocklogger ("Closing log output")
