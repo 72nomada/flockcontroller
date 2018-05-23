@@ -79,7 +79,7 @@ def get_file_list (owl,ssh):
             transport_file(owl, sftp, conf("pcap_path")+file, conf("local_pcap_path")+file)
             remove_file(owl, sftp, conf("pcap_path")+file)
 
-def owner_owlh (owl, ssh, file_remote)
+def owner_owlh (owl, ssh, file_remote):
     flogger ("set %s as owner of file %s from owl %s" % (conf("owlh_user"), file, owl["name"]))
     flockssh.owner_owlh(owl, ssh, file_remote, conf("owlh_user"))
 
