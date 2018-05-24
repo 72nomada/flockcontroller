@@ -34,6 +34,7 @@ def manage_pcap (pcap):
     #if pcap_ready(pcap)
         #put_in_progress(pcap)
         #run tcpreplay over owlh interface
+        # sudo tcpreplay -i owlh -t -l 1 2018-05-11-traffic-analysis-exercise.pcap
         #disposal pcap
         #exit 
     # log that file is still open

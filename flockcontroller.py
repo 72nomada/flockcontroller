@@ -16,6 +16,7 @@ import flockinventory
 flogger = flocklogger.flocklogger
 
 def main():
+    flogger ("init","INFO")
     if not flockmanager.amirunning():
         while not flockmanager.killme():
             flockinventory.run()
