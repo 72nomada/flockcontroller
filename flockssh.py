@@ -80,9 +80,6 @@ def check_owl_alive(owl):
     alive, ssh = owl_connect(owl)
     if alive:
         flogger("owl %s (%s) is alive" % (owl["name"], owl["ip"]))
-#        cmd='pwd; ls; date'
-#        print('\n test 1\n cmd %s\n' % cmd)
-#        run_cmd(cmd, ssh)
         return True, ssh
     flogger("owl %s (%s) is NOT alive" % (owl["name"], owl["ip"]))
     return False, ""

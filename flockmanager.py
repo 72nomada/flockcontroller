@@ -2,7 +2,6 @@ import os.path
 import signal
 
 import flockkiller
-#import flockdefs
 import flocklogger 
 import flockconf
 
